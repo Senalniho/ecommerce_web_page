@@ -9,7 +9,11 @@ function Sidebar({ handleChange }) {
     <>
       <section className="sidebar">
         <div className="logo-container">
-          <h1>🛒</h1>
+          {/* <h1>Arsen Shoes🛒</h1> */}
+          <img
+            src="https://1000logos.net/wp-content/uploads/2020/07/Foot-Shop-Logo1.jpg"
+            alt="Logo"
+          />{" "}
         </div>
         <Category handleChange={handleChange} />
         <Price handleChange={handleChange} />

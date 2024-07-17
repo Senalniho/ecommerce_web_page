@@ -11,6 +11,7 @@
 
 .logo-container {
   margin-bottom: 4rem;
+  background-color: white;
 }
 
 .logo-container h1 {
@@ -21,4 +22,11 @@
   font-size: 22px;
   font-weight: normal;
   margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 180px;
+  height: 120px;
+  align-items: center;
+  margin-top: 50px;
 }
