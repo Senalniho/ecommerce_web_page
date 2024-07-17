@@ -1,23 +1,11 @@
 import "../Products/Products.css";
 import { IoStarSharp } from "react-icons/io5";
 import { IoBag } from "react-icons/io5";
-import Cards from "../components/Cards";
 
-function Products() {
+function Products({ result }) {
   return (
     <>
-      <section className="card-container">
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-      </section>
+      <section className="card-container">{result}</section>
     </>
   );
 }

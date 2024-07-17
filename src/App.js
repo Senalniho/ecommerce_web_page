@@ -20,7 +20,8 @@ function App() {
   };
 
   const filteredItems = products.filter(
-    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    (product) =>
+      product.title.toLowerCase().indexOf(query.toLocaleLowerCase()) !== -1
   );
 
   //-------------Radio Filter--------------
@@ -37,13 +38,17 @@ function App() {
   function filteredData(products, selected, query) {
     let filteredProducts = products;
 
-    //Filtering Input items
-
+    // Filtering by query
     if (query) {
-      filteredProducts = filteredItems;
+      filteredProducts = filteredProducts.filter((product) => {
+        return (
+          product.title.toLowerCase().includes(query.toLowerCase()) ||
+          product.description.toLowerCase().includes(query.toLowerCase())
+        );
+      });
     }
 
-    //Selected Filter
+    // Filtering by selected category
     if (selected) {
       filteredProducts = filteredProducts.filter((product) => {
         return (
@@ -54,20 +59,21 @@ function App() {
           product.title === selected
         );
       });
-      return filteredProducts.map(
-        ({ img, title, star, reviews, newPrice, prevPrice }) => (
-          <Cards
-            key={Math.random()}
-            img={img}
-            title={title}
-            star={star}
-            reviews={reviews}
-            newPrice={newPrice}
-            prevPrice={prevPrice}
-          />
-        )
-      );
     }
+
+    // Return filtered products as Cards components
+
+    return filteredProducts.map((product, index) => (
+      <Cards
+        key={`${product.title}-${index}`} // Use a combination of unique properties and index
+        img={product.img}
+        title={product.title}
+        star={product.star}
+        reviews={product.reviews}
+        newPrice={product.newPrice}
+        prevPrice={product.prevPrice}
+      />
+    ));
   }
 
   const result = filteredData(products, selectedCategory, query);
@@ -75,9 +81,9 @@ function App() {
   return (
     <>
       <Sidebar handleChange={handleChange} />
-      <Navigaton />
-      <Recommended />
-      <Products />
+      <Navigaton query={query} handleChange={handleChange} />
+      <Recommended handleChange={handleClick} />
+      <Products result={result} />
     </>
   );
 }
