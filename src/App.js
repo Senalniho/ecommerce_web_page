@@ -1,47 +1,37 @@
-// import { useState } from "react";
-
+// import React, { useState } from "react";
+// import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 // import Navigation from "./Navigation/Nav";
 // import Products from "./Products/Products";
 // import Recommended from "./Recommended/Recommended";
 // import Sidebar from "./SideBar/Sidebar";
 // import Cards from "./components/Cards";
-
 // import products from "../src/db/data";
 // import Category from "./SideBar/Category/Category";
+// import ProductDetails from "./ProductDetails/ProductDetails";
 
 // function App() {
 //   const [selectedCategory, setSelectedCategory] = useState(null);
 //   const [query, setQuery] = useState("");
-
-//   //-------------Input Filter--------------
-
+//   // Function to capitalize the first letter of a string and lowercase the rest
+//   function capitalizeFirstLetter(str) {
+//     if (str.length === 0) return str;
+//     return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
+//   }
+//   // Handle input change for search query
 //   const handleInputChange = (event) => {
 //     setQuery(event.target.value);
 //   };
-
-//   const filteredItems = products.filter(
-//     (product) =>
-//       product.title.toLowerCase().indexOf(query.toLocaleLowerCase()) !== -1
-//   );
-
-//   //-------------Radio Filter--------------
-
+//   // Handle category change for radio buttons or buttons
 //   const handleChange = (event) => {
 //     setSelectedCategory(event.target.value);
 //   };
-
-//   function capitalizeFirstLetter(str) {
-//     return str.charAt(0).toUpperCase() + str.slice(1);
-//   }
-
-//   //-------------Buttons Filter--------------
-//   const handleClick = (event) => {
-//     setSelectedCategory(event.target.value);
+//   // Handle recommended category click
+//   const handleClick = (value) => {
+//     setSelectedCategory(value);
 //   };
-
+//   // Function to filter products based on selected category and query
 //   function filteredData(products, selected, query) {
 //     let filteredProducts = products;
-
 //     // Filtering by query
 //     if (query) {
 //       const formattedQuery = capitalizeFirstLetter(query);
@@ -54,7 +44,6 @@
 //         );
 //       });
 //     }
-
 //     // Filtering by selected category
 //     if (selected) {
 //       filteredProducts = filteredProducts.filter((product) => {
@@ -67,12 +56,27 @@
 //         );
 //       });
 //     }
+//     return filteredProducts;
+//   }
+//   // Get filtered products based on current state
+//   const filteredProducts = filteredData(products, selectedCategory, query);
 
-//     // Return filtered products as Cards components
+//   // Map filtered products to Cards components
+//   // const result = filteredProducts.map((product, index) => (
+//   //   <Cards
+//   //     key={`${product.title}-${index}`}
+//   //     img={product.img}
+//   //     title={product.title}
+//   //     star={product.star}
+//   //     reviews={product.reviews}
+//   //     newPrice={product.newPrice}
+//   //     prevPrice={product.prevPrice}
+//   //   />
+//   // ));
 
-//     return filteredProducts.map((product, index) => (
+//   const result = filteredProducts.map((product, index) => (
+//     <Link to={`/product/${product.id}`} key={`${product.title}-${index}`}>
 //       <Cards
-//         key={`${product.title}-${index}`}
 //         img={product.img}
 //         title={product.title}
 //         star={product.star}
@@ -80,24 +84,42 @@
 //         newPrice={product.newPrice}
 //         prevPrice={product.prevPrice}
 //       />
-//     ));
-//   }
+//     </Link>
+//   ));
 
-//   const result = filteredData(products, selectedCategory, query);
+//   // return (
+//   //   <>
+//   //     <Sidebar handleChange={handleChange} />
+//   //     <Navigation query={query} handleChange={handleInputChange} />
+//   //     <Recommended handleClick={handleClick} />
+//   //     <Products result={result} />
+//   //   </>
+//   // );
 
 //   return (
-//     <>
-//       <Sidebar handleChange={handleChange} />
-//       <Navigation query={query} handleChange={handleChange} />
-//       <Recommended handleChange={handleClick} />
-//       <Products result={result} />
-//     </>
+//     <BrowserRouter>
+//       <Switch>
+//         <Route path="/" exact>
+//           <Sidebar handleChange={handleChange} />
+//           <Navigation query={query} handleChange={handleInputChange} />
+//           <Recommended handleClick={handleClick} />
+//           <Products result={result} />
+//         </Route>
+//         <Route path="/product/:id">
+//           <ProductDetails />
+//         </Route>
+//       </Switch>
+//     </BrowserRouter>
 //   );
 // }
-
 // export default App;
 
+// File: src/App.js
+
+// File: src/App.js
+
 import React, { useState } from "react";
+import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import Navigation from "./Navigation/Nav";
 import Products from "./Products/Products";
 import Recommended from "./Recommended/Recommended";
@@ -105,29 +127,37 @@ import Sidebar from "./SideBar/Sidebar";
 import Cards from "./components/Cards";
 import products from "../src/db/data";
 import Category from "./SideBar/Category/Category";
+import ProductDetails from "./ProductDetails/ProductDetails";
+
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [query, setQuery] = useState("");
+
   // Function to capitalize the first letter of a string and lowercase the rest
   function capitalizeFirstLetter(str) {
     if (str.length === 0) return str;
     return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
   }
+
   // Handle input change for search query
   const handleInputChange = (event) => {
     setQuery(event.target.value);
   };
+
   // Handle category change for radio buttons or buttons
   const handleChange = (event) => {
     setSelectedCategory(event.target.value);
   };
+
   // Handle recommended category click
   const handleClick = (value) => {
     setSelectedCategory(value);
   };
+
   // Function to filter products based on selected category and query
   function filteredData(products, selected, query) {
     let filteredProducts = products;
+
     // Filtering by query
     if (query) {
       const formattedQuery = capitalizeFirstLetter(query);
@@ -140,6 +170,7 @@ function App() {
         );
       });
     }
+
     // Filtering by selected category
     if (selected) {
       filteredProducts = filteredProducts.filter((product) => {
@@ -152,29 +183,45 @@ function App() {
         );
       });
     }
+
     return filteredProducts;
   }
+
   // Get filtered products based on current state
   const filteredProducts = filteredData(products, selectedCategory, query);
+
   // Map filtered products to Cards components
   const result = filteredProducts.map((product, index) => (
-    <Cards
-      key={`${product.title}-${index}`}
-      img={product.img}
-      title={product.title}
-      star={product.star}
-      reviews={product.reviews}
-      newPrice={product.newPrice}
-      prevPrice={product.prevPrice}
-    />
+    <Link to={`/product/${product.id}`} key={`${product.title}-${index}`}>
+      <Cards
+        img={product.img}
+        title={product.title}
+        star={product.star}
+        reviews={product.reviews}
+        newPrice={product.newPrice}
+        prevPrice={product.prevPrice}
+      />
+    </Link>
   ));
+
   return (
-    <>
-      <Sidebar handleChange={handleChange} />
-      <Navigation query={query} handleChange={handleInputChange} />
-      <Recommended handleClick={handleClick} />
-      <Products result={result} />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Sidebar handleChange={handleChange} />
+              <Navigation query={query} handleChange={handleInputChange} />
+              <Recommended handleClick={handleClick} />
+              <Products result={result} />
+            </>
+          }
+        />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
 export default App;
