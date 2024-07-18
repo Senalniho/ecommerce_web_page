@@ -1,19 +1,25 @@
-/* File: src/ProductDetails/ProductDetails.module.css
+/* ProductDetails.module.css */
 
 .productDetails {
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.productDetails:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .productDetails h1 {
-  font-size: 2em;
+  font-size: 2.5em;
   margin-bottom: 20px;
   text-align: center;
+  color: #333333;
 }
 
 .productDetails img {
@@ -21,26 +27,30 @@
   max-width: 100%;
   height: auto;
   margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .productDetails p {
   font-size: 1.2em;
   margin: 10px 0;
+  color: #555555;
 }
 
 .backButton {
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
-  font-size: 1em;
-  color: #fff;
+  font-size: 1.1em;
+  color: #ffffff;
   background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .backButton:hover {
   background-color: #0056b3;
-} */
+}
