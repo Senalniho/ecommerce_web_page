@@ -5,10 +5,10 @@
   font-family: sans-serif;
 }
 
-a {
+/* a {
   text-decoration: none;
   color: rgb(97, 97, 97);
-}
+} */
 
 li {
   list-style: none;
@@ -19,4 +19,18 @@ ol {
   list-style-type: none;
   /* margin: 0;
   padding: 0; */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  list-style: none;
+}
+
+a:hover {
+  color: #007bff; /* Optional: Change color on hover */
+}
+
+a:visited {
+  color: black;
 }

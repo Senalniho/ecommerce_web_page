@@ -11,7 +11,7 @@ function Sidebar({ handleChange }) {
         <div className="logo-container">
           {/* <h1>Arsen Shoes🛒</h1> */}
           <img
-            src="https://1000logos.net/wp-content/uploads/2020/07/Foot-Shop-Logo1.jpg"
+            src="https://i.pinimg.com/originals/ba/5d/d4/ba5dd445504b80df283e90ebadb57d0b.gif"
             alt="Logo"
           />{" "}
         </div>

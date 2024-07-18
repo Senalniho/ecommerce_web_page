@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: hsla(0, 0%, 99%, 0.882);
 }
 
 .logo-container {
@@ -29,4 +30,10 @@
   height: 120px;
   align-items: center;
   margin-top: 50px;
+  background: transparent;
+}
+
+img {
+  size: 20rem;
+  background: transparent;
 }

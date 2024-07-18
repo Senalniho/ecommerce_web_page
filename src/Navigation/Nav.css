@@ -1,4 +1,4 @@
-nav {
+/* nav {
   display: flex;
   border-bottom: 2px solid #f3f3f3;
   justify-content: space-around;
@@ -24,4 +24,43 @@ input {
   height: 1, 5rem;
   margin-left: 2rem;
   color: #4e4d4d;
+} */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-container {
+  flex: 1;
+}
+
+.search-input {
+  width: 40%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-left: 40rem;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+}
+
+.nav-icons {
+  font-size: 1.5rem;
+  margin-left: 15px;
+  color: #555;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.nav-icons:hover {
+  color: #000;
+  transform: scale(1.2);
 }
